@@ -68,4 +68,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //Permission
     implementation ("com.google.accompanist:accompanist-permissions:0.28.0")
+    //Matirial3
+    implementation (libs.androidx.material3)
+
 }

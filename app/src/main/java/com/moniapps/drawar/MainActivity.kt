@@ -59,5 +59,6 @@ fun GetPermissions(
 @Composable
 fun GreetingPreview() {
     DrawARTheme {
+
     }
 }

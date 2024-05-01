@@ -7,3 +7,7 @@ I
 gradle/libs.versions.toml,d\7\d7595319a0658be6f1ed500ad590d42e4b28bc4f
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+n
+>app/src/main/java/com/moniapps/drawar/ui/screens/MainScreen.kt,4\2\425a9653395ede4a51aa3a960e17b001a1ede54d
+g
+7app/src/main/java/com/moniapps/drawar/ui/theme/Color.kt,b\e\be95bcee97117634eb85da2bfab159aaecf87d55
