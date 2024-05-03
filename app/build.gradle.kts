@@ -67,8 +67,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     //Permission
-    implementation ("com.google.accompanist:accompanist-permissions:0.28.0")
+    implementation (libs.accompanist.permissions)
     //Matirial3
     implementation (libs.androidx.material3)
+    //Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+    //Image loading library
+    implementation(libs.coil.compose)
 
 }

@@ -11,3 +11,9 @@ n
 >app/src/main/java/com/moniapps/drawar/ui/screens/MainScreen.kt,4\2\425a9653395ede4a51aa3a960e17b001a1ede54d
 g
 7app/src/main/java/com/moniapps/drawar/ui/theme/Color.kt,b\e\be95bcee97117634eb85da2bfab159aaecf87d55
+u
+Eapp/src/main/java/com/moniapps/drawar/ui/screens/SelectPhotoScreen.kt,9\b\9bdb9f6ff330653363937f0fa47408c5a77568bf
+u
+Eapp/src/main/java/com/moniapps/drawar/ui/components/AppLibraryCard.kt,2\3\2392f7fae3c17542e6df7aefdba712753bd71c35
+q
+Aapp/src/main/java/com/moniapps/drawar/navigation/AppNavigation.kt,4\5\45f9edaf76390952fce1a50afcb74170fb23d05d

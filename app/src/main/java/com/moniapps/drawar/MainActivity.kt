@@ -12,9 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.moniapps.drawar.navigation.AppNavigation
+import com.moniapps.drawar.ui.screens.MainScreen
 import com.moniapps.drawar.ui.theme.DrawARTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,6 +34,7 @@ class MainActivity : ComponentActivity() {
                     android.Manifest.permission.READ_MEDIA_IMAGES
                 )
             )
+            val navController = rememberNavController()
 
             DrawARTheme {
                 // A surface container using the 'background' color from the theme
@@ -38,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GetPermissions(permissionStates = permissionState)
-
+                    AppNavigation(navController = navController)
                 }
             }
         }
@@ -53,6 +58,7 @@ fun GetPermissions(
     SideEffect {
         permissionStates.launchMultiplePermissionRequest()
     }
+
 }
 
 @Preview(showBackground = true)

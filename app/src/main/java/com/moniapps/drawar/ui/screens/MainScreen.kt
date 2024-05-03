@@ -24,17 +24,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.moniapps.drawar.R
 import com.moniapps.drawar.ui.theme.CameraButtonColor
 import com.moniapps.drawar.ui.theme.LibraryButtonColor
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    navController: NavHostController
+) {
     Scaffold { paddingValues ->
         Column(
             modifier = Modifier.padding(paddingValues)
@@ -77,12 +81,9 @@ fun MainScreen() {
                 ) {
                     //Camera Button
                     OutlinedButton(
-                        onClick = {  },
+                        onClick = { navController.navigate("Select_Photo_Screen") },
                         shape = RoundedCornerShape(11.dp),
-                        modifier = Modifier
-                            .size(width = 160.dp, height = 120.dp)
-                        ,
-
+                        modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
                     ) {
                         Column(
@@ -101,13 +102,11 @@ fun MainScreen() {
                             )
                         }
                     }
-                    // Library button
+                    // Trace on phone button
                     OutlinedButton(
-                        onClick = {  },
+                        onClick = {  navController.navigate("Select_Photo_Screen") },
                         shape = RoundedCornerShape(11.dp),
-                        modifier = Modifier
-                            .size(width = 160.dp, height = 120.dp)
-                        ,
+                        modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
                     ) {
                         Column(
@@ -150,5 +149,6 @@ fun MainScreen() {
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    MainScreen()
+    val context = LocalContext.current
+    MainScreen(navController = NavHostController(context))
 }
