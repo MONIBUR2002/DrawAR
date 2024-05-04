@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -68,7 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     //Permission
     implementation (libs.accompanist.permissions)
-    //Matirial3
+    //Material3
     implementation (libs.androidx.material3)
     //Retrofit
     implementation (libs.retrofit)
@@ -77,5 +80,14 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     //Image loading library
     implementation(libs.coil.compose)
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // ViewModel utilities for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    //Dagger - Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+
 
 }

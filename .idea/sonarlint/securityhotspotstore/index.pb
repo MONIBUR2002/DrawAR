@@ -17,3 +17,5 @@ u
 Eapp/src/main/java/com/moniapps/drawar/ui/components/AppLibraryCard.kt,2\3\2392f7fae3c17542e6df7aefdba712753bd71c35
 q
 Aapp/src/main/java/com/moniapps/drawar/navigation/AppNavigation.kt,4\5\45f9edaf76390952fce1a50afcb74170fb23d05d
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
