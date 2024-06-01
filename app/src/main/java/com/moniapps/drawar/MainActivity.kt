@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -12,16 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.moniapps.drawar.navigation.AppNavigation
-import com.moniapps.drawar.ui.screens.MainScreen
 import com.moniapps.drawar.ui.theme.DrawARTheme
+import com.moniapps.drawar.viewmodel.CameraScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val cameraScreenViewModel by viewModels<CameraScreenViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalPermissionsApi::class)
@@ -43,13 +46,13 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GetPermissions(permissionStates = permissionState)
-                    AppNavigation(navController = navController)
+                    AppNavigation(navController = navController, cameraScreenViewModel = cameraScreenViewModel)
                 }
             }
         }
+
     }
 }
-
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun GetPermissions(
@@ -58,9 +61,7 @@ fun GetPermissions(
     SideEffect {
         permissionStates.launchMultiplePermissionRequest()
     }
-
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

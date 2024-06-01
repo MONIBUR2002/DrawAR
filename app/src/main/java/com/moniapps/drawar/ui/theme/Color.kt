@@ -12,3 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 val CameraButtonColor = Color(0xFF4A62DD)
 val LibraryButtonColor = Color(0xFFFCA521)
+val GRAY = Color(0xFF767676)

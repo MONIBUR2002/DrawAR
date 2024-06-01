@@ -13,7 +13,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -32,8 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.moniapps.drawar.R
-import com.moniapps.drawar.ui.theme.CameraButtonColor
-import com.moniapps.drawar.ui.theme.LibraryButtonColor
 
 @Composable
 fun MainScreen(
@@ -56,9 +53,10 @@ fun MainScreen(
                         style = MaterialTheme.typography.headlineSmall
                     )
                     IconButton(
-                        onClick = {  },
+                        onClick = {
 
-                        ) {
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.Filled.Info,
                             contentDescription = null,
