@@ -11,22 +11,22 @@ import com.moniapps.drawar.viewmodel.CameraScreenViewModel
 
 @Composable
 fun AppNavigation(
-    navController: NavHostController,
+    navHostController: NavHostController,
     cameraScreenViewModel: CameraScreenViewModel
 ) {
 
-    NavHost(navController = navController, startDestination = ScreenGraph.MainScreen.route) {
+    NavHost(navController = navHostController, startDestination = ScreenGraph.MainScreen.route) {
         composable(route = ScreenGraph.MainScreen.route) {
-            MainScreen(navController = navController)
+            MainScreen(navHostController = navHostController)
         }
         composable(route = ScreenGraph.SelectPhotoScreen.route) {
-            SelectPhotoScreen(navController = navController)
+            SelectPhotoScreen(navHostController = navHostController)
         }
         composable(
             route = ScreenGraph.CameraScreen.route
         ) {
 
-            CameraScreen(cameraScreenViewModel)
+            CameraScreen(cameraScreenViewModel,navHostController)
 
         }
     }

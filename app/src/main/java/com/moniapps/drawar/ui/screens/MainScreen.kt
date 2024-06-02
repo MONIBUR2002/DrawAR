@@ -34,7 +34,7 @@ import com.moniapps.drawar.R
 
 @Composable
 fun MainScreen(
-    navController: NavHostController
+    navHostController: NavHostController
 ) {
     Scaffold { paddingValues ->
         Column(
@@ -79,7 +79,7 @@ fun MainScreen(
                 ) {
                     //Camera Button
                     OutlinedButton(
-                        onClick = { navController.navigate("Select_Photo_Screen") },
+                        onClick = { navHostController.navigate("Select_Photo_Screen") },
                         shape = RoundedCornerShape(11.dp),
                         modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
@@ -102,7 +102,7 @@ fun MainScreen(
                     }
                     // Trace on phone button
                     OutlinedButton(
-                        onClick = {  navController.navigate("Select_Photo_Screen") },
+                        onClick = {  navHostController.navigate("Select_Photo_Screen") },
                         shape = RoundedCornerShape(11.dp),
                         modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
@@ -148,5 +148,5 @@ fun MainScreen(
 @Composable
 private fun MainScreenPreview() {
     val context = LocalContext.current
-    MainScreen(navController = NavHostController(context))
+    MainScreen(navHostController = NavHostController(context))
 }

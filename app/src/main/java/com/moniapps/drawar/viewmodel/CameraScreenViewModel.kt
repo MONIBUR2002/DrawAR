@@ -12,15 +12,24 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CameraScreenViewModel : ViewModel() {
+    private val _imageUri = MutableLiveData<Uri?>(null)
+    val imageUri: LiveData<Uri?> = _imageUri
+
+    fun makeImageUriNull(){
+        _imageUri.value = null
+    }
+
     @Composable
     fun ImagePicker() {
         val launcher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.PickVisualMedia(),
             onResult = { uri ->
-                selectedImageUri = uri
+                _imageUri.value = uri
             }
         )
         LaunchedEffect(Unit) {
@@ -30,7 +39,7 @@ class CameraScreenViewModel : ViewModel() {
         }
     }
 
-    var selectedImageUri by mutableStateOf<Uri?>(null)
+
     var imageOpacity by mutableFloatStateOf(0.5f)
     var scale by mutableFloatStateOf(1f)
     var rotation by mutableFloatStateOf(0f)

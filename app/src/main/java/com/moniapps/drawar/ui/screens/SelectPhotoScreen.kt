@@ -33,14 +33,14 @@ import com.moniapps.drawar.ui.components.AppLibraryCard
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelectPhotoScreen(
-    navController: NavHostController
+    navHostController: NavHostController
 ) {
 
     Column {
         TopAppBar(
             title = { Text(text = "Select", modifier = Modifier.padding(start = 20.dp)) },
             navigationIcon = {
-                IconButton(onClick = { navController.navigateUp() }) {
+                IconButton(onClick = { navHostController.navigateUp() }) {
                     Icon(
                         modifier = Modifier.padding(start = 8.dp),
                         imageVector = Icons.Filled.ArrowBack,
@@ -68,7 +68,7 @@ fun SelectPhotoScreen(
                                         bottom = 8.dp
                                     ).clickable {
 
-                                        navController.navigate(ScreenGraph.CameraScreen.route)
+                                        navHostController.navigate(ScreenGraph.CameraScreen.route)
                                     }
                                 , elevation = CardDefaults.cardElevation(12.dp)
                             ) {

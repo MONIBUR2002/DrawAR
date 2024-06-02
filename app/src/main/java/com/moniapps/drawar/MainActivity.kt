@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GetPermissions(permissionStates = permissionState)
-                    AppNavigation(navController = navController, cameraScreenViewModel = cameraScreenViewModel)
+                    AppNavigation(navHostController = navController, cameraScreenViewModel = cameraScreenViewModel)
                 }
             }
         }
