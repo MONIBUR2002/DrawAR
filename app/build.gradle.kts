@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    //id("com.google.dagger.hilt.android")
 
 }
 
@@ -96,7 +97,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     //Dagger - Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     //Camera
 
     // The following line is optional, as the core library is included indirectly by camera-camera2

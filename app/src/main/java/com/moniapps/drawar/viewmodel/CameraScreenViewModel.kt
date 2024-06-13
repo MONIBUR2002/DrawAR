@@ -33,9 +33,7 @@ class CameraScreenViewModel : ViewModel() {
             }
         )
         LaunchedEffect(Unit) {
-
             launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-            Log.d("image_picker", "ImagePicker: Called")
         }
     }
 
@@ -45,6 +43,10 @@ class CameraScreenViewModel : ViewModel() {
     var rotation by mutableFloatStateOf(0f)
     var offset by mutableStateOf(Offset.Zero)
     var isImageMovable by mutableStateOf(true)
+
+    fun onResetPosition(){
+        offset = Offset.Zero
+    }
 
     fun imageOpacityChanged(opacity: Float) {
         imageOpacity = opacity

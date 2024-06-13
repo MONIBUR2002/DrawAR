@@ -20,11 +20,13 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.moniapps.drawar.navigation.AppNavigation
 import com.moniapps.drawar.ui.theme.DrawARTheme
 import com.moniapps.drawar.viewmodel.CameraScreenViewModel
+import com.moniapps.drawar.viewmodel.TraceOnPhoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val cameraScreenViewModel by viewModels<CameraScreenViewModel>()
+    private val traceOnPhoneScreenViewModel by viewModels<TraceOnPhoneViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalPermissionsApi::class)
@@ -46,7 +48,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GetPermissions(permissionStates = permissionState)
-                    AppNavigation(navHostController = navController, cameraScreenViewModel = cameraScreenViewModel)
+                    AppNavigation(
+                        navHostController = navController,
+                        cameraScreenViewModel = cameraScreenViewModel,
+                        traceOnPhoneViewModel = traceOnPhoneScreenViewModel
+                    )
                 }
             }
         }

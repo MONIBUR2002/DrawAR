@@ -6,10 +6,19 @@ import androidx.activity.compose.BackHandler
 import androidx.camera.core.CameraSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,10 +27,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
@@ -73,17 +85,15 @@ fun CameraScreen(
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
 
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.BottomCenter
+    Surface(
+        Modifier.fillMaxSize()
     ) {
         AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
         AsyncImage(
             model = imageUri,
             contentDescription = null,
+            contentScale = ContentScale.Fit,
             modifier = Modifier
-                .fillMaxSize()
                 .alpha(viewModel.imageOpacity)
                 .graphicsLayer(
                     scaleX = viewModel.scale,
@@ -93,23 +103,28 @@ fun CameraScreen(
                     translationY = viewModel.offset.y
                 )
                 .transformable(state = state)
-
-
         )
 
-        EditCard(
-            imageOpacity = viewModel.imageOpacity,
-            onOpacityChange = {
-                viewModel.imageOpacityChanged(it)
-            },
-            locked = viewModel.isImageMovable,
-            onLockClicked = {
-                viewModel.isImageMovable = !viewModel.isImageMovable
-            }
-        )
+        Column(modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Bottom) {
 
+
+            EditCard(
+                imageOpacity = viewModel.imageOpacity,
+                onOpacityChange = {
+                    viewModel.imageOpacityChanged(it)
+                },
+                locked = viewModel.isImageMovable,
+                onLockClicked = {
+                    viewModel.isImageMovable = !viewModel.isImageMovable
+                },
+                modifier = Modifier.fillMaxWidth(),
+                onResetClicked = {
+                    viewModel.onResetPosition()
+                }
+            )
+        }
     }
-
 }
 
 private suspend fun Context.getCameraProvider(): ProcessCameraProvider =
@@ -120,3 +135,5 @@ private suspend fun Context.getCameraProvider(): ProcessCameraProvider =
             }, ContextCompat.getMainExecutor(this))
         }
     }
+
+

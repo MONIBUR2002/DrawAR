@@ -35,3 +35,7 @@ g
 7app/src/main/java/com/moniapps/drawar/ui/theme/Theme.kt,e\4\e41a2dfc22734e0e10ac9fb2298bca0047c8097e
 x
 Happ/src/main/java/com/moniapps/drawar/viewmodel/CameraScreenViewModel.kt,1\1\1194ce0d19b8d54f637d3478bb412ee43d0cbf49
+v
+Fapp/src/main/java/com/moniapps/drawar/ui/screens/TraceOnPhoneScreen.kt,4\a\4adb2d1fea4dbadc5e9ca8e465c32585b63062a9
+x
+Happ/src/main/java/com/moniapps/drawar/viewmodel/TraceOnPhoneViewModel.kt,8\6\8663cbdf63edf1e1071a3b7109cec068177ba8ee

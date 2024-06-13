@@ -33,7 +33,8 @@ import com.moniapps.drawar.ui.components.AppLibraryCard
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelectPhotoScreen(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    direction: String
 ) {
 
     Column {
@@ -67,8 +68,10 @@ fun SelectPhotoScreen(
                                         end = 16.dp,
                                         bottom = 8.dp
                                     ).clickable {
-
-                                        navHostController.navigate(ScreenGraph.CameraScreen.route)
+                                        when(direction){
+                                            "TraceOnCamera" -> navHostController.navigate(ScreenGraph.CameraScreen.route)
+                                            "TraceOnPhone" -> navHostController.navigate(ScreenGraph.TraceOnPhoneScreen.route)
+                                        }
                                     }
                                 , elevation = CardDefaults.cardElevation(12.dp)
                             ) {

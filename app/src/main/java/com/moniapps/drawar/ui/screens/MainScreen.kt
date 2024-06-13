@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.moniapps.drawar.R
+import com.moniapps.drawar.navigation.ScreenGraph
 
 @Composable
 fun MainScreen(
@@ -79,7 +80,9 @@ fun MainScreen(
                 ) {
                     //Camera Button
                     OutlinedButton(
-                        onClick = { navHostController.navigate("Select_Photo_Screen") },
+                        onClick = {
+                            navHostController.navigate(ScreenGraph.SelectPhotoScreen.route + "/TraceOnCamera")
+                        },
                         shape = RoundedCornerShape(11.dp),
                         modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
@@ -102,7 +105,9 @@ fun MainScreen(
                     }
                     // Trace on phone button
                     OutlinedButton(
-                        onClick = {  navHostController.navigate("Select_Photo_Screen") },
+                        onClick = {
+                            navHostController.navigate(ScreenGraph.SelectPhotoScreen.route + "/TraceOnPhone")
+                        },
                         shape = RoundedCornerShape(11.dp),
                         modifier = Modifier.size(width = 160.dp, height = 120.dp),
                         border = BorderStroke(2.dp, color = Color.Black)
@@ -125,16 +130,16 @@ fun MainScreen(
                         }
                     }
                 }
-                
+
 
             }
-            Box{
+            Box {
                 Text(text = "Your creation")
                 LazyRow {
 
                 }
             }
-            Box{
+            Box {
                 Text(text = "Trending")
                 LazyRow {
 

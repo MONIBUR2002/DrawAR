@@ -4,6 +4,8 @@ package com.moniapps.drawar.ui.components
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandVertically
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.moniapps.drawar.R
 import com.moniapps.drawar.ui.theme.GRAY
+import com.moniapps.drawar.ui.theme.RED
 
 
 @Composable
@@ -35,17 +38,23 @@ fun EditCard(
     imageOpacity: Float,
     onLockClicked: () -> Unit,
     onOpacityChange: (Float) -> Unit,
-    locked:Boolean
+    onResetClicked: () -> Unit,
+    locked: Boolean,
+    modifier: Modifier
 ) {
 
     var expanded by remember { mutableStateOf(false) }
     val cardHeight = if (expanded) 120.dp else 60.dp
     Box(
-        modifier = Modifier
-            .height(cardHeight)
-            .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
-            .fillMaxSize()
-
+        modifier.background(Color.White)
+            .height(cardHeight).animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+            .padding(bottom = 8.dp, start = 16.dp, end = 16.dp)
+            .fillMaxSize(),
     ) {
 
         Column(
@@ -56,7 +65,8 @@ fun EditCard(
                         dampingRatio = Spring.DampingRatioMediumBouncy,
                         stiffness = Spring.StiffnessMedium
                     )
-                ),
+                )
+            ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (expanded)
@@ -67,35 +77,47 @@ fun EditCard(
                     )
                 }, title = "Opacity")
 
-                Row(
-                    modifier = Modifier
-                    //.padding(start = 12.dp, end = 12.dp)
+            Row(
+                modifier = Modifier
+                //.padding(start = 12.dp, end = 12.dp)
+            ) {
+                IconButton(
+                    onClick = {
+                        expanded = !expanded
+                    },
+                    modifier = Modifier.weight(1f)
                 ) {
-                    IconButton(
-                        onClick = {
-                            expanded = !expanded
-                        },
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.opacity),
-                            contentDescription = "Opacity icon",
-                            tint = if(!expanded) Color.White else GRAY
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-                            onLockClicked()
-                        },
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.lock),
-                            contentDescription = "Lock icon",
-                            tint = if(locked) Color.White else GRAY
-                        )
-                    }
+                    Icon(
+                        painter = painterResource(id = R.drawable.opacity),
+                        contentDescription = "Opacity icon",
+                        tint = GRAY
+                    )
                 }
+                IconButton(
+                    onClick = {
+                        onLockClicked()
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.lock),
+                        contentDescription = "Lock icon",
+                        tint = if (locked) GRAY else RED
+                    )
+                }
+                IconButton(
+                    onClick = {
+                       onResetClicked()
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.reset),
+                        contentDescription = "Reset Position",
+                        tint = GRAY
+                    )
+                }
+            }
 
         }
     }
@@ -114,7 +136,7 @@ fun ExpandableView(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = title, color = Color.White)
+            Text(text = title, color = Color.Black)
             sliders()
         }
     }
@@ -123,5 +145,5 @@ fun ExpandableView(
 @Preview
 @Composable
 private fun EditCardPreview() {
-   EditCard(imageOpacity = 0.5f, onLockClicked = {},onOpacityChange = {},locked = false)
+    EditCard(imageOpacity = 0.5f, onLockClicked = {}, onOpacityChange = {}, onResetClicked = {}, locked = false, modifier = Modifier)
 }
