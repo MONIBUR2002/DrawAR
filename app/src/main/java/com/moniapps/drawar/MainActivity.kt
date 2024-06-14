@@ -22,10 +22,11 @@ import com.moniapps.drawar.ui.theme.DrawARTheme
 import com.moniapps.drawar.viewmodel.CameraScreenViewModel
 import com.moniapps.drawar.viewmodel.TraceOnPhoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val cameraScreenViewModel by viewModels<CameraScreenViewModel>()
+   // private val cameraScreenViewModel by viewModels<CameraScreenViewModel>()
     private val traceOnPhoneScreenViewModel by viewModels<TraceOnPhoneViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -33,6 +34,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val cameraScreenViewModel: CameraScreenViewModel = hiltViewModel()
+
             val permissionState = rememberMultiplePermissionsState(
                 permissions = listOf(
                     android.Manifest.permission.CAMERA,

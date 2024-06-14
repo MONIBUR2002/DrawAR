@@ -39,8 +39,10 @@ fun EditCard(
     onLockClicked: () -> Unit,
     onOpacityChange: (Float) -> Unit,
     onResetClicked: () -> Unit,
+    onFlashlightClicked: () -> Unit,
     locked: Boolean,
-    modifier: Modifier
+    modifier: Modifier,
+    isFlashlightOn:Boolean
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -107,6 +109,18 @@ fun EditCard(
                 }
                 IconButton(
                     onClick = {
+                        onFlashlightClicked()
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.flash),
+                        contentDescription = "Lock icon",
+                        tint = if (!isFlashlightOn) GRAY else RED
+                    )
+                }
+                IconButton(
+                    onClick = {
                        onResetClicked()
                     },
                     modifier = Modifier.weight(1f)
@@ -145,5 +159,5 @@ fun ExpandableView(
 @Preview
 @Composable
 private fun EditCardPreview() {
-    EditCard(imageOpacity = 0.5f, onLockClicked = {}, onOpacityChange = {}, onResetClicked = {}, locked = false, modifier = Modifier)
+    EditCard(imageOpacity = 0.5f, onLockClicked = {}, onOpacityChange = {}, onResetClicked = {}, locked = false, onFlashlightClicked = {}, modifier = Modifier, isFlashlightOn = false)
 }

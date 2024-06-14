@@ -97,6 +97,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     //Dagger - Hilt
     implementation(libs.hilt.android)
+    implementation (libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
     //Camera
 

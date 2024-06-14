@@ -1,10 +1,14 @@
 package com.moniapps.drawar.viewmodel
 
+import android.content.Context
+import android.hardware.camera2.CameraManager
 import android.net.Uri
-import android.util.Log
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.camera.core.Camera
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -12,14 +16,30 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class CameraScreenViewModel : ViewModel() {
+@HiltViewModel
+class CameraScreenViewModel @Inject constructor(
+    @ApplicationContext private val context: Context
+) : ViewModel() {
     private val _imageUri = MutableLiveData<Uri?>(null)
     val imageUri: LiveData<Uri?> = _imageUri
 
+    private var camera: Camera? = null
+
+
+    var isFlashlightOn by mutableStateOf(false)
+
+    fun toggleFlashlight() {
+
+
+    }
     fun makeImageUriNull(){
         _imageUri.value = null
     }

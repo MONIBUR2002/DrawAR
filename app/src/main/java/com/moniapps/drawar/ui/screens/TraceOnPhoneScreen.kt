@@ -72,7 +72,9 @@ fun TraceOnPhone(
             modifier = Modifier,
             onResetClicked = {
                 viewModel.onResetPosition()
-            }
+            },
+            isFlashlightOn = false,
+            onFlashlightClicked = {}
         )
 
     }

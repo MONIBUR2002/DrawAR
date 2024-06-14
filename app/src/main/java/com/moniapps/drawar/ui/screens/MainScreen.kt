@@ -22,16 +22,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.moniapps.drawar.R
 import com.moniapps.drawar.navigation.ScreenGraph
+import com.moniapps.drawar.viewmodel.CameraScreenViewModel
 
 @Composable
 fun MainScreen(
@@ -133,8 +137,10 @@ fun MainScreen(
 
 
             }
-            Box {
-                Text(text = "Your creation")
+            Box(
+            ) {
+                Text(
+                    text = "Your creation")
                 LazyRow {
 
                 }
@@ -144,6 +150,7 @@ fun MainScreen(
                 LazyRow {
 
                 }
+
             }
         }
     }
