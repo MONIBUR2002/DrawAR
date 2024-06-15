@@ -2,9 +2,7 @@ package com.moniapps.drawar.ui.screens
 
 
 import android.content.Context
-import android.os.Build
 import androidx.activity.compose.BackHandler
-import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -19,9 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.graphicsLayer
@@ -41,7 +37,7 @@ import kotlin.coroutines.suspendCoroutine
 @Composable
 fun CameraScreen(
     viewModel: CameraScreenViewModel,
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ) {
 
     val imageUri by viewModel.imageUri.observeAsState()

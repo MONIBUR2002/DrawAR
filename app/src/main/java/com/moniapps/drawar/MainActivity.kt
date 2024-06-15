@@ -2,6 +2,7 @@ package com.moniapps.drawar
 
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
@@ -22,17 +24,16 @@ import com.moniapps.drawar.ui.theme.DrawARTheme
 import com.moniapps.drawar.viewmodel.CameraScreenViewModel
 import com.moniapps.drawar.viewmodel.TraceOnPhoneViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.hilt.navigation.compose.hiltViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-   // private val cameraScreenViewModel by viewModels<CameraScreenViewModel>()
     private val traceOnPhoneScreenViewModel by viewModels<TraceOnPhoneViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContent {
             val cameraScreenViewModel: CameraScreenViewModel = hiltViewModel()
 
@@ -60,6 +61,10 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 }
 @OptIn(ExperimentalPermissionsApi::class)
